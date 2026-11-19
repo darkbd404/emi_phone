@@ -18,19 +18,18 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: "8.6"
-
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --no-daemon --stacktrace
+        run: |
+          gradle wrapper --gradle-version 8.6 --distribution-type all
+          chmod +x ./gradlew
+          ./gradlew assembleDebug --no-daemon
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
+        if: success()
         with:
           name: emi-locker-customer-apk
           path: app/build/outputs/apk/debug/*.apk
