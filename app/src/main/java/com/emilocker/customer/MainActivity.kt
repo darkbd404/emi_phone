@@ -169,8 +169,7 @@ class MainActivity : Activity() {
         lockedHomeBox.addView(badgeTv)
 
         val infoTv = TextView(this).apply {
-            text = "Device is enrolled under an active EMI plan.
-Configuration is locked and managed remotely by the store."
+            text = "Device is enrolled under an active EMI plan.\nConfiguration is locked and managed remotely by the store."
             textSize = 14f
             setLineSpacing(5f, 1.15f)
             setTextColor(0xFFCBD5E1.toInt())
@@ -288,12 +287,9 @@ Configuration is locked and managed remotely by the store."
         val overlayState = if (Settings.canDrawOverlays(this)) "ON" else "OFF"
 
         statusCardTv.text =
-            "Device UID: $uid
-" +
-                "Setup Mode: $setupState
-" +
-                "EMI Status: $emi  |  Lock State: $lockSt
-" +
+            "Device UID: $uid\n" +
+                "Setup Mode: $setupState\n" +
+                "EMI Status: $emi  |  Lock State: $lockSt\n" +
                 "Device Admin: $adminState  |  Overlay: $overlayState"
     }
 }
